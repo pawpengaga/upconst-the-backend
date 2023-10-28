@@ -2,6 +2,8 @@
 
 App made for track personal tasks over time ✨
 
+## 👉<a href="https://github.com/JhonatanVeliz/Uptask">FRONTEND HERE</a>👈
+
 <hr/>
 
 ## Team proyect made by
@@ -12,7 +14,9 @@ App made for track personal tasks over time ✨
 
 ## THE STACK 🎀
 
-**ReactJs version:** Soon defined by FrontEnd Team
+**ReactJs version:** 18.
+
+**react-router-dom version:** 6.
 
 **Postgresql Version:** 15.2
 
