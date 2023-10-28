@@ -1,24 +1,21 @@
-# README
+# 🌸🔥 UpConst - Backend 🔥🌸
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+App made for track personal tasks over time ✨
 
-Things you may want to cover:
+<hr/>
 
-* Ruby version
+## Team proyect made by
 
-* System dependencies
+<a href="https://github.com/JhonatanVeliz">@JhonatanVeliz</a> **(Frontend)** — <a href="https://github.com/francoarturo93">@francoarturo93</a> **(Frontend)** — <a href="https://github.com/kotoykm">@kotoykm</a> **(Backend)**
 
-* Configuration
+<hr/>
 
-* Database creation
+## THE STACK 🎀
 
-* Database initialization
+**ReactJs version:** Soon defined by FrontEnd Team
 
-* How to run the test suite
+**Postgresql Version:** 15.2
 
-* Services (job queues, cache servers, search engines, etc.)
+**Ruby version:** 3.1.3
 
-* Deployment instructions
-
-* ...
+**Rails version:** 7.0.8
