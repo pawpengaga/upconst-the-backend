@@ -18,6 +18,8 @@ App made for track personal tasks over time ✨
 
 **react-router-dom version:** 6.
 
+**SasSS version:** 
+
 **Postgresql Version:** 15.2
 
 **Ruby version:** 3.1.3
