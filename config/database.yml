@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: upConstBack_production
-  username: upConstBack
-  password: <%= ENV["UPCONSTBACK_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
