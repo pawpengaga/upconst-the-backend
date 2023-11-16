@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  # get 'habits/index'
-  # get 'habits/show'
-  # get 'habits/create'
-  # get 'habits/update'
-  # get 'habits/destroy'
 
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
@@ -16,5 +11,17 @@ Rails.application.routes.draw do
   }
 
   resources :habits, only: [:index, :show, :create, :update, :destroy]
+  resources :trackers, only: [:index, :show, :create, :update, :destroy]
 
+  # get 'trackers/index'
+  # get 'trackers/show'
+  # get 'trackers/create'
+  # get 'trackers/update'
+  # get 'trackers/destroy'
+  #...........................
+  # get 'habits/index'
+  # get 'habits/show'
+  # get 'habits/create'
+  # get 'habits/update'
+  # get 'habits/destroy'
 end
