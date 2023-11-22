@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name]) #Aqui tambien se podia usar un avatar, dejado para el proyecto de verdad
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar]) #añadidos un monton, un poco porque si XD
   end
 end
