@@ -41,7 +41,7 @@ class HabitsController < ApplicationController
 
     if @habit
       @habit.destroy()
-      render json: "NOOO LO MATASTEEE, AHORA QUE NO EXISTE"
+      render json: "NOOO LO MATASTEEE, AHORA SI QUE NO EXISTE"
     else
       render json: {error: "QUE BOBO SIGUE CON SUS BOBADAS QUE BOBO"}
     end
@@ -50,7 +50,7 @@ class HabitsController < ApplicationController
   private
 
   def habit_params
-    params.require(:habit).permit(:name, :user_id)
+    params.require(:habit).permit(:name, :user_id, :description)
   end
 
 end
