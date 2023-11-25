@@ -1,49 +1,54 @@
 class HabitsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @habits = Habit.all()
+    @habits = current_user.habits
     render json: @habits, status: 200
   end
 
   def show
     @habit = Habit.find(params[:id])
-    if @habit
+
+    if @habit.user == current_user
       render json: @habit, status: 200
     else
       render json: {
-        error: "NO EXISTE BOBO QUE BOBO XD"
-      }
+        error: "No puede verlo que bobo XD"
+      }, status: :forbidden
     end
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: "QUE BUSCA BOBO XD" }, status: :not_found
   end
 
   def create
-    @habit = Habit.new(habit_params())
+    @habit = current_user.habits.new(habit_params)
 
     if @habit.save
-      render json: @habit, status: 200
+      render json: @habit, status: :created
     else
-      render json: {error: "QUE BOBO XD"}
+      render json: {error: "QUE BOBO XD"}, status: :unprocessable_entity
     end
   end
 
   def update
-    @habit = Habit.find(params[:id])
+    @habit = current_user.habits.find(params[:id])
 
-    if @habit
+    if @habit.user == current_user
       @habit.update(habit_params)
-      render json: "Editado con exito! ELIMINAR LUEGO"
+      render json: "Editado con exito! ELIMINAR LUEGO", status: :ok
     else
-      render json: {error: "QUE BOBOBOBO XD"}
+      render json: {error: "QUE BOBOBOBO XD"}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @habit = Habit.find(params[:id])
+    @habit = current_user.habits.find(params[:id])
 
-    if @habit
+    if @habit.user == current_user
       @habit.destroy()
-      render json: "NOOO LO MATASTEEE, AHORA SI QUE NO EXISTE"
+      render json: "NOOO LO MATASTEEE, AHORA SI QUE NO EXISTE", status: :ok
     else
-      render json: {error: "QUE BOBO SIGUE CON SUS BOBADAS QUE BOBO"}
+      render json: {error: "QUE BOBO SIGUE CON SUS BOBADAS QUE BOBO"}, status: :unprocessable_entity
     end
   end
 
