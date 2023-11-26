@@ -55,3 +55,5 @@ gem "activestorage", "~> 7.0"
 gem "devise-jwt", "~> 0.11.0"
 gem "jsonapi-serializer", "~> 2.2"
 gem "aws-sdk-s3", "~> 1.136"
+
+gem "activerecord-session_store", "~> 2.1"
