@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+#  resources :users do
+#     resources :habits, only: [:index, :show, :create, :update, :destroy]
+#     resources :trackers, only: [:index, :show, :create, :update, :destroy]
+#  end
+
   resources :habits, only: [:index, :show, :create, :update, :destroy]
   resources :trackers, only: [:index, :show, :create, :update, :destroy]
 
