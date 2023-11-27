@@ -29,23 +29,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
       else
         render json: {
-          status: {message: "Usuario no pudo ser creado. #{current_user.errors.full_messages.to_sentence}"},
-          status: :unprocessable_entity
+          status: {message: "Usuario no pudo ser creado. #{current_user.errors.full_messages.to_sentence}"}
         }
     end
   end
 
   def user_params
-    params.require(:user).permit(:name, :avatar)
+    params.require(:user).permit(:name, :avatar, :email, :password)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar, :email, :password])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :avatar, :email, :password])
   end
 end
