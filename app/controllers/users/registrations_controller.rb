@@ -13,8 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
     else
       render json: {
-        status: { message: "Error al actualizar usuario. #{current_user.errors.full_messages.to_sentence}" },
-        status: :unprocessable_entity
+        status: { code: 422, message: "Error al actualizar usuario. #{current_user.errors.full_messages.to_sentence}" }
       }
     end
   end
@@ -29,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       }
       else
         render json: {
-          status: {message: "Usuario no pudo ser creado. #{current_user.errors.full_messages.to_sentence}"}
+          status: {code: 422, message: "Usuario no pudo ser creado. #{current_user.errors.full_messages.to_sentence}"}
         }
     end
   end
