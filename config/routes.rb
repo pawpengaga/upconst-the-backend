@@ -14,9 +14,11 @@ Rails.application.routes.draw do
 #     resources :habits, only: [:index, :show, :create, :update, :destroy]
 #     resources :trackers, only: [:index, :show, :create, :update, :destroy]
 #  end
-
-  resources :habits, only: [:index, :show, :create, :update, :destroy]
+resources :habits, only: [:index, :show, :create, :update, :destroy] do
   resources :trackers, only: [:index, :show, :create, :update, :destroy]
+end
+  resources :trackers, only: [:index, :show, :create, :update, :destroy]
+
 
   # get 'trackers/index'
   # get 'trackers/show'

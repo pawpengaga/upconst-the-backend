@@ -2,22 +2,33 @@ class HabitsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @habits = current_user.habits
-    render json: @habits, status: 200
+    @habits = current_user.habits.includes(:trackers)
+
+    habits_with_trackers = @habits.map do |habit|
+      {
+        habit: habit.as_json(except: [:updated_at]),
+        trackers: habit.trackers.as_json(except: [:updated_at, :user_id, :habit_id])
+      }
+    end
+
+    render json: habits_with_trackers, status: 200
   end
 
   def show
     @habit = Habit.find(params[:id])
 
     if @habit.user == current_user
-      render json: @habit, status: 200
+      render json: {
+        habit: @habit.as_json(except: [:updated_at]),
+        trackers: @habit.trackers.as_json(except: [:updated_at, :user_id, :habit_id])
+      }, status: 200
     else
       render json: {
         error: "No puede verlo que bobo XD"
       }, status: :forbidden
     end
-    rescue ActiveRecord::RecordNotFound
-      render json: { error: "QUE BUSCA BOBO XD" }, status: :not_found
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: "QUE BUSCA BOBO XD" }, status: :not_found
   end
 
   def create
