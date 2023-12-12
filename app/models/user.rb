@@ -20,4 +20,16 @@ class User < ApplicationRecord
       avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-avatar.jpg')), filename: 'default-avatar.jpg', content_type: 'image/jpg')
     end
   end
+
+  def generate_password_token!
+    self.reset_password_token = generate_token
+    self.reset_password_sent_at = Time.now.utc
+    save!
+  end
+
+  private
+
+  def generate_token
+    SecureRandom.hex(10)
+  end
 end

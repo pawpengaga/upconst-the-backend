@@ -10,6 +10,34 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.default_options = {from: 'no-reply@testemail.com'}
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    user: ENV['gmail_user'],
+    password: ENV['upconst_devise_mailing'],
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    open_timeout: 5,
+    read_timeout: 5
+
+    # :user_name => 'edec81fda7b73a',
+    # :password => '9df6ed167be1bf',
+    # :address => 'sandbox.smtp.mailtrap.io',
+    # :host => 'sandbox.smtp.mailtrap.io',
+    # :port => '2525',
+    # :authentication => :cram_md5
+  }
+
+
   config.cache_classes = false
 
   # Do not eager load code on boot.

@@ -1,6 +1,23 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
+  respond_to :json
+
+  def forgot
+    if params[:email].blank? # check if email is present
+      return render json: {error: 'No tiene mail xD'}
+    end
+
+    user = User.find_by(email: params[:email]) # if present find user by email
+
+    if user.present?
+      user.generate_password_token!
+      UserMailer.password_reset(user).deliver_now
+      render json: { status: 'Ok enviado tilín' }, status: :ok
+    else
+      render json: {error: 'Email, no valido, lo has perdido todo XDDDDD'}, status: :not_found
+    end
+  end
   # GET /resource/password/new
   # def new
   #   super
