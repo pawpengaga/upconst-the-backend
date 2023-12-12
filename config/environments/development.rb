@@ -22,7 +22,7 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'gmail.com',
-    user: ENV['gmail_user'],
+    user_name: ENV['gmail_user'],
     password: ENV['upconst_devise_mailing'],
     authentication: 'plain',
     enable_starttls_auto: true,
