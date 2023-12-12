@@ -24,6 +24,10 @@ Rails.application.configure do
     open_timeout: 5,
     read_timeout: 5
   }
+
+  puts "Host: #{ENV["backend_url"]}"
+  puts "Gmail user: #{ENV['gmail_user']}"
+  puts "SMTP password: #{ENV['upconst_devise_mailing']}"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
