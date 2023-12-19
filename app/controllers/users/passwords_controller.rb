@@ -5,18 +5,16 @@ class Users::PasswordsController < Devise::PasswordsController
   respond_to :json
 
   def update
-    super do |resource|
-      user = User.find_by(reset_password_token: params[:reset_password_token])
+    user = User.find_by(reset_password_token: params[:reset_password_token])
 
-      if user && user.reset_password_period_valid?
-        if user.update(password: params[:password], password_confirmation: params[:password_confirmation])
-          render json: { message: 'Contraseña actualizada exitosamente' }
-        else
-          render json: { error: user.errors.full_messages }, status: :unprocessable_entity
-        end
+    if user && user.reset_password_period_valid?
+      if user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+        render json: { message: 'Contraseña actualizada exitosamente' }
       else
-        render json: { error: 'Token inválido o expirado' }, status: :unprocessable_entity
+        render json: { error: "no se pudo mano" }, status: :unprocessable_entity
       end
+    else
+      render json: { error: 'Token inválido o expirado' }, status: :unprocessable_entity
     end
   end
 
