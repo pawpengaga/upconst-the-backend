@@ -9,9 +9,10 @@ class Users::PasswordsController < Devise::PasswordsController
 
     if user && user.reset_password_period_valid?
       if user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+        user.clear_reset_password_token
         render json: { message: 'Contraseña actualizada exitosamente' }
       else
-        render json: { error: "no se pudo mano" }, status: :unprocessable_entity
+        render json: { error: user.errors.full_messages }, status: :unprocessable_entity
       end
     else
       render json: { error: 'Token inválido o expirado' }, status: :unprocessable_entity
