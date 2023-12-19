@@ -7,15 +7,15 @@ class Users::PasswordsController < Devise::PasswordsController
   def update
     user = User.find_by(reset_password_token: params[:reset_password_token])
 
-    if user && user.reset_password_period_valid?
+    if user && user.reset_password_period_valid? && (user.reset_password_token == params[:reset_password_token])
       if user.update(password: params[:password], password_confirmation: params[:password_confirmation])
         user.clear_reset_password_token
-        render json: { message: 'Contraseña actualizada exitosamente' }
+        render json: { success: true, message: 'Contraseña actualizada exitosamente', errors: [] }
       else
-        render json: { error: user.errors.full_messages }, status: :unprocessable_entity
+        render json: { success: false, message: 'Error al actualizar la contraseña', errors: user.errors.full_messages }, status: :unprocessable_entity
       end
     else
-      render json: { error: 'Token inválido o expirado' }, status: :unprocessable_entity
+      render json: { success: false, message: 'Token inválido o expirado', errors: ['Token inválido o expirado'] }, status: :unprocessable_entity
     end
   end
 
