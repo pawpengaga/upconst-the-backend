@@ -14,7 +14,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
       if user.update(password: params[:password], password_confirmation: params[:password_confirmation])
         puts "=========== Password updated successfully ==========="
-        user.clear_reset_password_token
+        #user.clear_reset_password_token
         render json: { success: true, message: 'Contraseña actualizada exitosamente', errors: [] }
       else
         puts "=========== Error updating password ==========="
