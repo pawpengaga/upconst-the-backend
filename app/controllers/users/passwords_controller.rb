@@ -4,7 +4,7 @@ class Users::PasswordsController < Devise::PasswordsController
   before_action :configure_permitted_parameters
   respond_to :json
 
-  def update
+  def edit
     puts "=========== Entering update method ==========="
 
     user = User.find_by(reset_password_token: params[:reset_password_token])
